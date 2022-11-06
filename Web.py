@@ -17,7 +17,7 @@ MallaFacial = mpMallaFacial.FaceMesh(max_num_faces=1)
 cap = cv2.VideoCapture(0)
 
 def gen_frame():
-    # empezamos
+    # Begin part Infinite Bucle 
     while True:
         ret, frame= cap.read()
         if not ret:
@@ -39,10 +39,10 @@ def gen_frame():
             b'content-Type: image/jpeg\r\n\r\n'+ frame + b'\r\n')
 
 
-#Creamos la app
+# Create app
 app = Flask(__name__)
 
-#Ruta principal
+# Main Route
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -52,6 +52,6 @@ def video():
     return Response(gen_frame(), mimetype="multipart/x-mixed-replace; boundary=frame")
 
 
-# Ejecutar
+# Main Execute
 if __name__=="__main__":
     app.run(debug=True)
